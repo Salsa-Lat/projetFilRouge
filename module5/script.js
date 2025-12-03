@@ -175,6 +175,8 @@ productList.innerHTML = " ";
 
 // - Appeler la fonction pour créer la carte
 createFeaturedProductCard();
+createFeaturedProductCard();
+createFeaturedProductCard();
 
 // - Ajouter le résultat dans la section prévue
 //   (indice : même méthode que pour assembler les éléments dans la carte)
