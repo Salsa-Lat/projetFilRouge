@@ -55,14 +55,6 @@ console.log("Nombre de ventes :", salesCount);
 
 
 
-
-
-
-
-
-
-
-
 /* --- Rendu visuel Exo 3 --- */
 
 const cartTotalHeader = document.getElementById("cart-total");
@@ -82,3 +74,33 @@ if (cartMessageElement) {
 }
 
 console.log("Exercice 3 chargé ✅");
+
+
+
+// - Définir une fonction (calculatePriceTTC(priceHT)) qui :
+//     • reçoit un prix HT en paramètre
+//     • calcule le prix TTC (en réutilisant la formule de l’exercice 3)
+//     • renvoie le prix TTC
+function calculatePriceTTC(priceHT) {
+  let priceTTC = priceHT + (priceHT * TVA);
+  return priceTTC;
+}
+
+// - Définir une autre fonction (formatPrice(price)) qui :
+//     • reçoit un prix ( type :nombre)
+//     • arrondit ce prix à 2 décimales
+//     • ajoute le symbole de la monnaie
+//     • renvoie le résultat sous forme de texte
+//       (indice : il existe une méthode pour formater un nombre avec un certain nombre de décimales)
+function formatPrice(price) {
+  let priceRound = price.toFixed(2);
+  return priceRound;
+}
+
+// - Tester ces fonctions :
+//     • appeler la fonction de calcul du TTC avec différents prix HT
+//     • passer le résultat dans la fonction de formatage
+//     • afficher le résultat final dans la console
+console.log(calculatePriceTTC(20.99));
+// console.log(formatPrice(calculatePriceTTC(20.99)));
+console.log(`Le prix de ce produit est de ${formatPrice(calculatePriceTTC(20.99))}€`);
