@@ -149,7 +149,7 @@ console.log("Exercice 5 chargé ✅");
 let productNames = ["Kawasaki Ninja 400", "Kawasaki Ninja 200", "Kawasaki Ninja 600"];
 
 // - créer tableau (productPricesHT)
-let productPricesHT = [5500.49, 6700.29, 7200.75];
+let productPricesHT = [5500.49, 2600.75, 6800.29];
 
 // - afficher dans la console la longueur du tableau (le nombre d'éléments à l'intérieur)
 console.log(productNames.length);
@@ -161,10 +161,10 @@ function afficherProduitsConsole() {
   });
 
   productPricesHT.forEach(element => {
-    element;
+    let priceTTC = calculatePriceTTC(element);
+    formatPrice(priceTTC);
+    console.log(formatPrice(priceTTC));
   });
-  // let priceTTC = calculatePriceTTC(productPricesHT);
-  // let priceTTCFormated = formatPrice(priceTTC);
 
 
 
