@@ -143,18 +143,13 @@ console.log("Exercice 5 chargé ✅");
 
 
 
-
-
-// - créer tableau (productNames)
+// ex 6
 let productNames = ["Kawasaki Ninja 400", "Kawasaki Ninja 200", "Kawasaki Ninja 600"];
 
-// - créer tableau (productPricesHT)
 let productPricesHT = [5500.49, 2600.75, 6800.29];
-
-// - afficher dans la console la longueur du tableau (le nombre d'éléments à l'intérieur)
 console.log(productNames.length);
 
-// - définir fonction (afficherProduitsConsole()):
+
 function afficherProduitsConsole() {
   productNames.forEach((element, index) => {
     let priceHT = productPricesHT[index];
@@ -165,12 +160,110 @@ function afficherProduitsConsole() {
   });
 }
 
-//   - `Pour chaque nom dans mon tableau productNames:`
-//     (indice : il faudra récupérer l'index de chaque nom en plus. Donc on doit récupérer 2 informations.)
-//       - récupérer prix HT via `prixHT[index]`
-//       - calculer le prix TTC (avec une fonction créée plus tôt dans nos exercices)
-//       - formatter prix (avec une fonction créée plus tôt dans nos exercices)
-//       - afficher dans la console la phrase : "Produit : Nom — Prix : XX,XX €"
-// - appeler la fonction
-
 afficherProduitsConsole();
+
+
+
+
+// - Créer un tableau contenant plusieurs produits
+//   (chaque produit regroupe ses informations dans une même structure)
+//   (indice : utiliser une syntaxe qui permet de stocker plusieurs propriétés ensemble)
+
+// - Chaque produit doit au minimum contenir :
+//     • un identifiant
+//     • un nom
+//     • un prix HT
+//     • une description
+//     • une image (URL)
+
+let products = [
+  {
+    id: "kn2",
+    name: "Kawasaki Ninja 200",
+    prixHT: 2600.75,
+    desc: "A cool bike nice for beginer riders.",
+    img: "https://img.indianautosblog.com/crop/1200x675/2018/07/Kawasaki-Ninja-300-2018-blue-left-quarter.jpg"
+  }, {
+    id: "kn4",
+    name: "Kawasaki Ninja 400",
+    prixHT: 5500.49,
+    desc: "A fire bike amazing for intermediate riders.",
+    img: "https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/model/23MY_Ninja_400_GY1_STU__1_.png"
+  }, {
+    id: "kn6",
+    name: "Kawasaki Ninja 600",
+    prixHT: 6800.29,
+    desc: "A masterclass of a bike for pro riders.",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkzA3kPjC3h3TQbT7Sutk253aJPa6M_zCvfA&s"
+  }
+];
+
+
+
+// - Récupérer la zone du DOM où tous les produits doivent être affichés
+
+const listeProduits = document.getElementById("product-list");
+listeProduits.innerHTML = " ";
+
+// - Adapter ou créer une fonction qui :
+//     • reçoit un produit en paramètre
+//     • crée un conteneur pour la carte
+//     • crée les éléments nécessaires (image, nom, prix TTC, description)
+//     • utilise les propriétés du produit pour remplir ces éléments
+//     • réutilise les fonctions de calcul et de formatage de prix
+//     • renvoie la carte complète
+
+function createProductCard(element) {
+  const article = document.createElement("article");
+  article.classList.add("product-card");
+
+  const imgs = document.createElement("img");
+  imgs.src = element.img;
+  imgs.alt = element.id;
+  imgs.classList.add("product-image");
+
+  const title = document.createElement("h3");
+  title.textContent = element.name;
+  title.classList.add("product-title");
+
+  const priceElt = document.createElement("p");
+  const priceTTC = calculatePriceTTC(element.prixHT);
+  priceElt.textContent = formatPrice(priceTTC);
+  priceElt.classList.add("product-price");
+
+  const desc = document.createElement("p");
+  desc.textContent = element.desc;
+  desc.classList.add("product-description");
+
+  article.appendChild(imgs);
+  article.appendChild(title);
+  article.appendChild(priceElt);
+  article.appendChild(desc);
+
+  return article;
+}
+
+// const cards = createProductCard();
+// listeProduits.appendChild(cards);
+
+
+
+// - Créer une fonction qui :
+//     • vide le contenu de la zone d’affichage des produits
+//     • parcourt le tableau de produits
+//     • pour chaque produit :
+//         - crée une carte à partir de ce produit
+//         - ajoute cette carte dans la zone d’affichage
+
+
+function productIntoCards() {
+  products.forEach(elements => {
+    const cards = createProductCard(elements);
+    listeProduits.appendChild(cards);
+  });
+}
+
+
+// - Appeler cette fonction pour afficher tous les produits dans la page
+
+productIntoCards();
